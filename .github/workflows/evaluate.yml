@@ -1,0 +1,41 @@
+name: Evaluation Suite
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+
+jobs:
+  evaluate:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: Install dependencies
+        run: pip install -r requirements.txt
+
+      - name: Install Ollama
+        run: |
+          curl -fsSL https://ollama.com/install.sh | sh
+          ollama pull llama3.1:8b &
+          sleep 30  # wait for model pull
+
+      - name: Run unit tests
+        run: pytest tests/ -v
+
+      - name: Run evaluation (requires pre-seeded ChromaDB)
+        run: |
+          python evaluate.py --gold data/gold_set.json --report data/eval_results.json
+        continue-on-error: true   # don't fail build on quality regressions yet
+
+      - name: Upload evaluation report
+        uses: actions/upload-artifact@v4
+        with:
+          name: eval-report
+          path: data/eval_results.json

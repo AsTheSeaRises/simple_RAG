@@ -1,0 +1,35 @@
+# Environment
+.env
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+.Python
+
+# Data (don't commit docs or vector store — too large)
+data/chroma/
+data/mlflow/
+data/docs/
+data/eval_results.json
+
+# But DO commit gold set and sample structure
+!data/.gitkeep
+!data/gold_set.json
+
+# Models (downloaded locally)
+*.bin
+*.pt
+*.safetensors
+sentence_transformers/
+
+# IDE
+.vscode/
+.idea/
+*.swp
+.DS_Store
+
+# Streamlit
+.streamlit/
+
+# Logs
+*.log

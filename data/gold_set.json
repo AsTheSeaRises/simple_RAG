@@ -1,0 +1,51 @@
+[
+  {
+    "id": "gs-01",
+    "question": "What was the net asset value of the fund as of Q3 2023?",
+    "expected_answer": "The answer depends on your ingested corpus. Replace this with the actual NAV from your documents.",
+    "expected_query_type": "factual",
+    "notes": "Tests factual extraction from a single document"
+  },
+  {
+    "id": "gs-02",
+    "question": "Summarise the key risks identified in the due diligence memo.",
+    "expected_answer": "The due diligence memo should identify risks such as market risk, liquidity risk, and concentration risk. Specific values depend on your corpus.",
+    "expected_query_type": "summary",
+    "notes": "Tests summarisation capability"
+  },
+  {
+    "id": "gs-03",
+    "question": "How does the performance narrative for Fund A compare to Fund B over the last year?",
+    "expected_answer": "Comparison should highlight differences in returns, strategy, and portfolio composition based on your documents.",
+    "expected_query_type": "comparison",
+    "notes": "Tests multi-document retrieval and comparison"
+  },
+  {
+    "id": "gs-04",
+    "question": "What changed in the fund strategy between the H1 and H2 reports?",
+    "expected_answer": "Changes in strategy allocation, geographic focus, or risk posture between the two reports.",
+    "expected_query_type": "temporal",
+    "notes": "Tests temporal reasoning across two documents"
+  },
+  {
+    "id": "gs-05",
+    "question": "What was the total commitment amount across all funds in the 2023 annual report?",
+    "expected_answer": "Specific numeric value from the 2023 annual report. Replace with actual figure from your corpus.",
+    "expected_query_type": "factual",
+    "notes": "Tests numerical precision extraction"
+  },
+  {
+    "id": "gs-06",
+    "question": "What is the current share price of Apple?",
+    "expected_answer": "This question is outside the scope of the document corpus.",
+    "expected_query_type": "out_of_scope",
+    "notes": "Tests refusal / out-of-scope boundary"
+  },
+  {
+    "id": "gs-07",
+    "question": "Tell me about performance.",
+    "expected_answer": "The system should seek clarification or acknowledge the ambiguity while providing what performance data is available.",
+    "expected_query_type": "summary",
+    "notes": "Tests handling of ambiguous query"
+  }
+]
