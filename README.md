@@ -1,4 +1,4 @@
-# Pantheon Document Intelligence — Simple RAG PoC
+# Document Intelligence — Simple RAG PoC
 
 A lightweight, fully open-source RAG assistant for financial documents.
 Built as a reference implementation for the Pantheon AI Engineer take-home project.
