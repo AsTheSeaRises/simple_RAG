@@ -1,7 +1,6 @@
 # Document Intelligence — Simple RAG PoC
 
 A lightweight, fully open-source RAG assistant for financial documents.
-Built as a reference implementation for the Pantheon AI Engineer take-home project.
 
 **Stack: all free, all local** — Ollama · sentence-transformers · ChromaDB · Streamlit · MLflow
 

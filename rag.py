@@ -219,7 +219,7 @@ def verify_citations(citations: list[Citation], chunks: list[RetrievedChunk]) ->
 
 # ── Generator ────────────────────────────────────────────────────────────────
 
-ANSWER_PROMPT = """You are a financial document analyst at Pantheon, a private markets firm.
+ANSWER_PROMPT = """You are a financial document analyst specializing in private markets.
 Answer the user's question using ONLY the provided document excerpts.
 Do NOT use external knowledge. If the answer is not in the excerpts, say so clearly.
 

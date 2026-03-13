@@ -94,7 +94,7 @@ def run_evaluation(gold_path: str = settings.gold_set_path) -> dict:
     refusal_total = 0
 
     print(f"\n{'='*60}")
-    print(f"  Pantheon RAG — Evaluation ({len(gold_set)} questions)")
+    print(f"  RAG — Evaluation ({len(gold_set)} questions)")
     print(f"{'='*60}\n")
 
     for i, item in enumerate(gold_set, 1):

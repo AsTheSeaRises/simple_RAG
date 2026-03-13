@@ -23,7 +23,7 @@ class Settings(BaseSettings):
 
     # ── ChromaDB (local, persistent — free) ───────────────────────────────
     chroma_persist_dir: str = "./data/chroma"
-    collection_name: str = "pantheon_docs"
+    collection_name: str = "rag_docs"
 
     # ── Chunking ───────────────────────────────────────────────────────────
     chunk_size: int = 800        # tokens approx.  Tune per doc type.
@@ -40,7 +40,7 @@ class Settings(BaseSettings):
 
     # ── Observability ─────────────────────────────────────────────────────
     mlflow_tracking_uri: str = "./data/mlflow"
-    mlflow_experiment: str = "pantheon-rag"
+    mlflow_experiment: str = "simple-rag"
     log_level: str = "INFO"
     log_file: str = "./data/rag.log"
 
