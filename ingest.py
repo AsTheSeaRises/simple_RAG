@@ -164,6 +164,8 @@ def ingest(pdf_paths: list[Path], reset: bool = False, batch_size: int = 64) -> 
     buffer_docs: list[str] = []
     buffer_ids: list[str] = []
     buffer_meta: list[dict] = []
+    # Track IDs seen in the current batch to deduplicate within a single upsert call
+    buffer_id_set: set[str] = set()
 
     def flush() -> None:
         nonlocal total_chunks
@@ -179,16 +181,27 @@ def ingest(pdf_paths: list[Path], reset: bool = False, batch_size: int = 64) -> 
         total_chunks += len(buffer_docs)
         log.info("batch_upserted", count=len(buffer_docs), total=total_chunks)
         buffer_docs.clear(); buffer_ids.clear(); buffer_meta.clear()
+        buffer_id_set.clear()
+
+    chunk_counter = 0  # global counter ensures uniqueness even for identical text
 
     for path in pdf_paths:
         log.info("ingesting_file", file=str(path))
         t0 = time.perf_counter()
 
         for record in parse_pdf(path):
+            chunk_counter += 1
+            # Include full text + counter so identical passages get distinct IDs
             chunk_id = hashlib.sha256(
-                f"{record['source']}:p{record['page']}:{record['text'][:60]}".encode()
+                f"{record['source']}:p{record['page']}:{chunk_counter}:{record['text']}".encode()
             ).hexdigest()[:16]
 
+            # Skip if this ID is already queued in the current batch
+            if chunk_id in buffer_id_set:
+                log.warning("duplicate_id_skipped", chunk_id=chunk_id, source=record["source"])
+                continue
+
+            buffer_id_set.add(chunk_id)
             buffer_ids.append(chunk_id)
             buffer_docs.append(record["text"])
             buffer_meta.append({

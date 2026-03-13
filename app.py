@@ -109,13 +109,6 @@ st.caption(
     "Powered by Ollama (local LLM) · sentence-transformers · ChromaDB · LangChain"
 )
 
-# Conversation history display
-for q, r in st.session_state.history:
-    with st.chat_message("user"):
-        st.write(q)
-    with st.chat_message("assistant"):
-        _display_response(r)
-
 
 def _display_response(response: DocumentResponse) -> None:
     """Render a DocumentResponse in the chat message area."""
@@ -144,7 +137,14 @@ def _display_response(response: DocumentResponse) -> None:
                 )
 
 
-# Query input
+# ── Conversation history display ──────────────────────────────────────────────
+for q, r in st.session_state.history:
+    with st.chat_message("user"):
+        st.write(q)
+    with st.chat_message("assistant"):
+        _display_response(r)
+
+# ── Query input ───────────────────────────────────────────────────────────────
 question = st.chat_input("Ask a question about your financial documents…")
 
 if question:
