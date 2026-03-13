@@ -1,5 +1,5 @@
 """
-app.py — Streamlit UI for the Pantheon Document Intelligence PoC.
+app.py — Streamlit UI for the Document Intelligence PoC.
 
 Run: streamlit run app.py
 
@@ -27,7 +27,7 @@ log = structlog.get_logger()
 
 # ── Page config ───────────────────────────────────────────────────────────────
 st.set_page_config(
-    page_title="Pantheon Document Intelligence",
+    page_title="Document Intelligence",
     page_icon="📊",
     layout="wide",
     initial_sidebar_state="expanded",
@@ -54,7 +54,7 @@ _init_state()
 # ── Sidebar ───────────────────────────────────────────────────────────────────
 with st.sidebar:
     st.title("📊 Document Intelligence")
-    st.caption("Pantheon AI Product Squad — PoC")
+    st.caption("Document Intelligence — PoC")
     st.divider()
 
     # Observability stats
